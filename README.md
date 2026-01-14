@@ -99,7 +99,7 @@
       }
     }
 
-    /* Падающие смайлики */
+    /* Падающие смайлики — без белого фона */
     .falling-coin {
       position: absolute;
       top: -50px;
@@ -107,7 +107,6 @@
       transform: translateX(-50%);
       width: 40px;
       height: 40px;
-      background: #fff;
       color: #1E88DC;
       font-size: 1.5rem;
       border-radius: 50%;
@@ -117,6 +116,7 @@
       animation: fall 3s linear forwards;
       pointer-events: none;
       z-index: -1;
+      background: transparent; /* ⬅️ Вот здесь убрали белый фон! */
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
