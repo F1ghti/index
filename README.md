@@ -24,10 +24,10 @@
       overflow-x: hidden;
       padding: 20px;
       touch-action: manipulation;
-      animation: gradientShift 15s ease infinite;
+      animation: gradientPulse 8s ease-in-out infinite; /* Плавный перелив */
     }
 
-    @keyframes gradientShift {
+    @keyframes gradientPulse {
       0% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
       50% { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); }
       100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
@@ -50,7 +50,6 @@
     .coin-button {
       width: 140px;
       height: 140px;
-      background: #fff;
       color: #1E88DC;
       font-size: 4rem;
       border: none;
@@ -64,6 +63,7 @@
       align-items: center;
       justify-content: center;
       -webkit-tap-highlight-color: transparent;
+      background: transparent; /* ⬅️ Убрали белый фон! */
     }
 
     .coin-button:active {
@@ -116,7 +116,7 @@
       animation: fall 3s linear forwards;
       pointer-events: none;
       z-index: -1;
-      background: transparent; /* ⬅️ Вот здесь убрали белый фон! */
+      background: transparent;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
