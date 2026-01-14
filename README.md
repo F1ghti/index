@@ -142,7 +142,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="coins-display">Смайликов: <span id="coins">0</span></div>
+    <div class="coins-display">Счёт: <span id="coins">0</span></div>
     <button class="coin-button" id="coinBtn">💰</button>
   </div>
 
