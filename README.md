@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Мини-Кликер</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
@@ -23,6 +23,7 @@
       color: white;
       overflow-x: hidden;
       padding: 20px;
+      touch-action: manipulation; /* Отключает двойной тап и масштаб */
     }
 
     .container {
@@ -50,6 +51,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       border-radius: 50%;
       outline: none;
+      -webkit-tap-highlight-color: transparent; /* Убирает подсветку при клике */
     }
 
     .coin-button:active {
@@ -113,6 +115,7 @@
     }
 
     btn.addEventListener('click', (e) => {
+      e.preventDefault(); // Отменяем дефолтное поведение
       coins++;
       coinsEl.textContent = coins;
 
