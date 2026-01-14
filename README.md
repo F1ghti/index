@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Кликер Монет</title>
+  <title>Кликер Смайликов</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     * {
@@ -24,7 +24,7 @@
       overflow-x: hidden;
       padding: 20px;
       touch-action: manipulation;
-      animation: gradientShift 15s ease infinite; /* Анимация фона */
+      animation: gradientShift 15s ease infinite;
     }
 
     @keyframes gradientShift {
@@ -50,8 +50,9 @@
     .coin-button {
       width: 140px;
       height: 140px;
-      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDUiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzFFODhEQyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMzAiIGZpbGw9IiMxRTg4REMifC8+PHRleHQgeD0iNTAiIHk9IjUwIiBmb250LWZhbWlseT0iQm9sZCIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+JiMxMjc4OTY7PC90ZXh0Pjwvc3ZnPg==') no-repeat center;
-      background-size: contain;
+      background: #fff;
+      color: #1E88DC;
+      font-size: 4rem;
       border: none;
       cursor: pointer;
       position: relative;
@@ -59,6 +60,9 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       border-radius: 50%;
       outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -95,7 +99,7 @@
       }
     }
 
-    /* Падающие монетки */
+    /* Падающие смайлики */
     .falling-coin {
       position: absolute;
       top: -50px;
@@ -103,11 +107,17 @@
       transform: translateX(-50%);
       width: 40px;
       height: 40px;
-      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxOCIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjMUU4OERDIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxMiIgZmlsbD0iIzFFODhEQyIvPjx0ZXh0IHg9IjIwIiB5PSIyMCIgZm9udC1mYW1pbHk9IkJvbGQiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPiYjMTI3ODk2OzwvdGV4dD48L3N2Zz4=') no-repeat center;
-      background-size: contain;
+      background: #fff;
+      color: #1E88DC;
+      font-size: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       animation: fall 3s linear forwards;
       pointer-events: none;
       z-index: -1;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     @keyframes fall {
@@ -125,14 +135,15 @@
       .coin-button {
         width: 110px;
         height: 110px;
+        font-size: 3rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="coins-display">Монет: <span id="coins">0</span></div>
-    <button class="coin-button" id="coinBtn"></button>
+    <div class="coins-display">Смайликов: <span id="coins">0</span></div>
+    <button class="coin-button" id="coinBtn">😊</button>
   </div>
 
   <script>
@@ -168,9 +179,10 @@
         }
       }, 1000);
 
-      // Создаём падающую монетку
+      // Создаём падающий смайлик
       const fallingCoin = document.createElement('div');
       fallingCoin.className = 'falling-coin';
+      fallingCoin.textContent = '💲';
       fallingCoin.style.left = Math.random() * 100 + '%'; // случайное положение по горизонтали
       document.body.appendChild(fallingCoin);
 
@@ -179,9 +191,6 @@
           fallingCoin.parentNode.removeChild(fallingCoin);
         }
       }, 3000);
-
-      // Опционально: звук
-      // new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAgD4AAAB9AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA').play();
     });
   </script>
 </body>
