@@ -182,7 +182,7 @@
       // Создаём падающий смайлик
       const fallingCoin = document.createElement('div');
       fallingCoin.className = 'falling-coin';
-      fallingCoin.textContent = '💲';
+      fallingCoin.textContent = '💰';
       fallingCoin.style.left = Math.random() * 100 + '%'; // случайное положение по горизонтали
       document.body.appendChild(fallingCoin);
 
