@@ -21,14 +21,15 @@
       justify-content: center;
       font-family: 'Segoe UI', system-ui, sans-serif;
       color: white;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Запрещаем горизонтальный скролл */
       padding: 20px;
-      touch-action: manipulation; /* Отключает двойной тап и масштаб */
+      touch-action: manipulation;
     }
 
     .container {
       text-align: center;
-      max-width: 500px;
+      max-width: 90vw; /* Ограничиваем ширину под экран */
+      width: 100%;
     }
 
     .coins-display {
@@ -40,8 +41,8 @@
     }
 
     .coin-button {
-      width: 160px;
-      height: 160px;
+      width: 140px;
+      height: 140px;
       background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDUiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzFFODhEQyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMzAiIGZpbGw9IiMxRTg4REMifC8+PHRleHQgeD0iNTAiIHk9IjUwIiBmb250LWZhbWlseT0iQm9sZCIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+JiMxMjc4OTY7PC90ZXh0Pjwvc3ZnPg==') no-repeat center;
       background-size: contain;
       border: none;
@@ -51,7 +52,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       border-radius: 50%;
       outline: none;
-      -webkit-tap-highlight-color: transparent; /* Убирает подсветку при клике */
+      -webkit-tap-highlight-color: transparent;
     }
 
     .coin-button:active {
@@ -85,15 +86,20 @@
       }
     }
 
-    /* Мобильная адаптация */
+    /* Адаптивность */
     @media (max-width: 600px) {
       .coins-display {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
       }
       .coin-button {
-        width: 130px;
-        height: 130px;
+        width: 110px;
+        height: 110px;
       }
+    }
+
+    /* Убираем лишние элементы */
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -115,7 +121,7 @@
     }
 
     btn.addEventListener('click', (e) => {
-      e.preventDefault(); // Отменяем дефолтное поведение
+      e.preventDefault();
       coins++;
       coinsEl.textContent = coins;
 
@@ -124,14 +130,12 @@
       plusOne.className = 'plus-one';
       plusOne.textContent = '+1';
       
-      // Позиция над кнопкой
       const rect = btn.getBoundingClientRect();
       plusOne.style.left = `${rect.left + rect.width / 2}px`;
       plusOne.style.top = `${rect.top + rect.height / 2}px`;
 
       document.body.appendChild(plusOne);
 
-      // Удаляем после анимации
       setTimeout(() => {
         if (plusOne.parentNode) {
           plusOne.parentNode.removeChild(plusOne);
